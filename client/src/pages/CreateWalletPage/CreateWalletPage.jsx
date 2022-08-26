@@ -104,11 +104,18 @@ const CreateWalletPage = () => {
 
                         <input
                             className={`input-gray ${checkLightTheme()} ${invalidInp}`}
-                            type="password"
-                            placeholder={`Repeat your Password`}
+                            type={passShow?'text':'password'}
+                            placeholder={`Enter password again`}
                             value={passCopy}
                             onChange={event => setPassCopy(event.target.value)}
                         />
+                        <div className={`${checkLightTheme()} ${invalidInp}`}>
+                                <img
+                                    onClick={handleShowPass}
+                                    src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}
+                                    alt="eye"
+                                />
+                            </div>
 
                         <button className={`blue-button`} onClick={(event) => handleRoute('/showSeed',event)}>Next</button>
                         <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigatePage('/')}>Cancel</button>

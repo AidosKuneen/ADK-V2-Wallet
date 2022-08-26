@@ -14,7 +14,7 @@
   "author": "Aidos Kuneen <info@aidoskuneen.com>",
   "homepage": "http://aidoskuneen.com",
   "license": "GPL-3.0",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/AidosKuneen/ADK-V2-Wallet"
   },
@@ -41,11 +41,11 @@
           "config": {}
         },
         {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-        {
           "name": "@electron-forge/maker-dmg",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
           "config": {}
         }
       ]

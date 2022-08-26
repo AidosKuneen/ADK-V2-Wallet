@@ -61,6 +61,10 @@ const CreatePassword = () => {
     const handleShowPass = () =>{
         setPassShow(!passShow)
     }
+    const [passCopyShow,setPassCopyShow] = useState(false)
+    const handleShowCopyPass = () =>{
+        setPassCopyShow(!passCopyShow)
+    }
 
     const navigateRoute = (url) =>{
         navigate(url)
@@ -97,23 +101,24 @@ const CreatePassword = () => {
                                 }
                             </div>
                         </div>
-
+                       <div className="pass-auth">
                         <input
                             className={`input-gray ${checkLightTheme()} ${invalidInp}`}
-                            type="password"
-                            placeholder={`insert again`}
+                            type={passCopyShow?'text':'password'}
+                            placeholder={`Enter password again`}
                             value={passCopy}
                             onChange={event => setPassCopy(event.target.value)}
-                        />
-
-                        <footer>
-                            <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>
-                                Create
-                            </button>
-                            <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
-                                Cancel
-                            </button>
-                        </footer>
+                            />
+                            <div className={`${checkLightTheme()} ${invalidInp}`}>
+                                <img
+                                    onClick={handleShowCopyPass}
+                                    src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}
+                                    alt="eye"
+                                />
+                            </div>
+                        </div>
+                            <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>Create</button>
+                            <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>Cancel</button>
 
                     </form>
                 </div>

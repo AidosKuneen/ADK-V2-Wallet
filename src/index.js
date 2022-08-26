@@ -36,7 +36,7 @@ const createWindow = () => {
     resizable:false,
     //icon:'/icon.ico',
     webPreferences: {
-      preload: 'preload.js',
+      preload: path.join(__dirname, "preload.js"),
     },
   });
   //mainWindow.setIcon('./icon2.icns')

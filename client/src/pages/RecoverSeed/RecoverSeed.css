@@ -1,0 +1,41 @@
+.rec-seed-form-container{}
+
+.rec-seed-form-container h2{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.rec-seed-form-container h2.light{
+    color: var(--bg-dark);
+}
+.rec-seed-form-container form{
+    width: 400px;
+}
+
+.rec-seed-form-container form .footer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.rec-seed-form-container form .footer button{
+    width: 49%;
+    padding: 8px 0;
+    margin-top: 30px;
+}
+
+.rec-seed-form-container form .footer .but-fg-pass{
+    margin: 25px auto 0;
+    color: var(--color-white);
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: .3s;
+    text-decoration: underline;
+    opacity: .7;
+}
+.rec-seed-form-container form .footer .but-fg-pass.light{
+    color: var(--bg-dark);
+}
+.rec-seed-form-container form .footer .but-fg-pass:hover,
+.rec-seed-form-container form .footer .but-fg-pass.light:hover{
+    opacity: 1;
+}

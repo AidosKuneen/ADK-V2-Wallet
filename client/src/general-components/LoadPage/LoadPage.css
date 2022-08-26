@@ -1,0 +1,58 @@
+.block-container.load-page{
+    position: absolute;
+    flex-wrap: wrap;
+    align-content: center;
+    background: var(--bg-dark);
+    z-index: 100;
+}
+
+.block-container.load-page header{
+    /*background: rgba(255, 0, 0, 0.26);*/
+    width: 950px;
+    margin-bottom: 100px;
+    padding-left: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block-container.load-page header .monetka{
+    display: flex;
+    align-items: center;
+}
+.block-container.load-page header .monetka img{
+    margin-right: 30px;
+}
+.block-container.load-page header .monetka h1{
+    font-weight: 500;
+    font-size: 36px;
+}
+.block-container.load-page header .monetka h3{
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--color-white-opac-5);
+}
+
+.block-container.load-page header .about-changes{
+    display: flex;
+}
+.block-container.load-page .a-c-container:last-child{
+    margin: 0;
+}
+.block-container.load-page .a-c-container{
+    margin-right: 30px;
+}
+.block-container.load-page .a-c-container p{
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-white-opac-5);
+    margin: 0 0 7px 0;
+}
+.block-container.load-page .a-c-container h2{
+    color: var(--color-white-opac-8);
+    font-weight: 400;
+    font-size: 20px;
+}
+.block-container.load-page .a-c-container h2.color{
+    color: #F5B300;
+}

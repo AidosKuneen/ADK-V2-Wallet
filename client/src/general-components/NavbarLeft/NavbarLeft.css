@@ -1,0 +1,161 @@
+.navbar-left{
+    width: 160px;
+    height: 100vh;
+    position: absolute;
+    background: var(--bg-nav-left);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 15px 0 15px;
+    z-index: 100;
+}
+.navbar-left.light{
+    background: var(--color-white);
+}
+.navbar-left header{
+    width: 100%;
+    display: inherit;
+    justify-content: inherit;
+    flex-wrap: inherit;
+}
+
+.navbar-left header .logo{
+    width: 90%;
+    padding-top: 0;
+    padding-bottom:15px;
+    border-bottom: 1px solid #24252F;
+    display: inherit;
+    justify-content: inherit;
+    align-items: center;
+}
+.ai-logo{
+    margin-right: 10px;
+}
+.logo p{
+    margin: 0;
+}
+.navbar-left.light .logo p{
+    color: var(--bg-dark);
+}
+
+.navbar-left header .menu{
+    margin-top: 10px;
+    display: inherit;
+    flex-wrap: inherit;
+    transition: .3s;
+}
+.navbar-left header .menu a,
+.navbar-left footer a{
+    width: 100%;
+    font-size: 14px;
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 10px 0 10px 25px;
+    display: flex;
+    align-content: center;
+    transition: .3s;
+    opacity: .6;
+}
+.navbar-left.light header .menu a,
+.navbar-left.light footer a{
+    font-weight: 500;
+    color: var(--bg-dark);
+}
+
+.navbar-left header .menu a img,
+.navbar-left footer a img{
+    margin-right: 12px;
+    opacity: .50;
+}
+
+.navbar-left header .menu a:hover,
+.navbar-left footer a:hover,
+.navbar-left header .menu a:hover img,
+.navbar-left footer a:hover img,
+.navbar-left header .menu a.active,
+.navbar-left footer a.active,
+.navbar-left header .menu a.active img,
+.navbar-left footer a.active img {
+    opacity: 1;
+    background: #24252F;
+}
+.navbar-left.light header .menu a:hover,
+.navbar-left.light footer a:hover,
+.navbar-left.light header .menu a:hover img,
+.navbar-left.light footer a:hover img,
+.navbar-left.light header .menu a.active,
+.navbar-left.light footer a.active,
+.navbar-left.light header .menu a.active img,
+.navbar-left.light footer a.active img {
+    opacity: 1;
+    background: #F4F4F4;
+}
+
+.navbar-left footer{
+    width: 100%;
+    display: inherit;
+    flex-wrap: inherit;
+}
+
+/*wallet page styles for nav*/
+.nav-bal-stack{
+    margin-top: -1px;
+    width: 100%;
+    background: #1B1C26;
+}
+.nav-bal-stack.light{
+    background: #F4F4F4;
+}
+.nav-bal-stack div{
+    padding: 15px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.nav-bal-stack p{
+    color: var(--color-white);
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    opacity: .8;
+}
+.nav-bal-stack.light p{
+    color: var(--bg-black);
+}
+.nav-bal-stack h5{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-blue);
+}
+.nav-bal-stack h5.green{
+    color: var(--color-green-04c);
+}
+.nav-bal-stack hr,
+.logout-but-cont hr{
+    width: 80%;
+    margin: auto;
+    background: var(--color-white);
+}
+
+.nav-bal-stack .stake-container{
+    height: 64px;
+}
+.nav-bal-stack .stake-div{
+    position: absolute;
+    min-width: 100%;
+    padding: 0;
+    transition: .3s;
+}
+.nav-bal-stack .stake-div.opac{
+    opacity: 0;
+}
+
+
+
+/*logout button container*/
+.logout-but-cont{
+    width: 100%;
+}

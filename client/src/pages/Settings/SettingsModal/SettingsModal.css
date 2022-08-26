@@ -1,0 +1,55 @@
+.settings-modal  div.modal-content{
+    padding: 10px;
+    background: #24252F;
+    border: none;
+}
+.settings-modal.light div.modal-content{
+    background: var(--color-white);
+}
+
+.settings-modal .modal-header,
+.settings-modal .modal-footer{
+    border: none;
+}
+.settings-modal .modal-body{
+    padding: 30px;
+}
+.settings-modal .modal-footer{
+    display: flex;
+    justify-content: center;
+}
+.settings-modal .modal-footer button{
+    margin-bottom: 10px;
+}
+.settings-modal.light .modal-footer button{
+    color: var(--bg-dark);
+}
+.settings-modal.light .modal-footer button.gray-button{
+    color: var(--color-white-opac-8);
+}
+.settings-modal.light .modal-footer button.gray-button.light{
+    color: var(--bg-dark);
+}
+.settings-modal.light .modal-footer button.gray-button.light:hover{
+    color: var(--bg-black);
+    background: var(--bg-black-opac-25);
+}
+.settings-modal .modal-footer button:hover{
+    border: 1px solid var(--color-white);
+    background: none;
+}
+.settings-modal.light .modal-footer button.border-button:hover{
+    border: 1px solid var(--bg-black);
+    color: var(--bg-black);
+}
+
+.settings-modal p{
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-white);
+}
+.settings-modal.light p{
+    color: var(--bg-dark);
+}

@@ -1,0 +1,87 @@
+.block-container.menu.settings{
+    align-content: start;
+    flex-wrap: wrap;
+}
+.container-setting{
+    width: 95%;
+    margin-top: 20px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    background: #1B1C26;
+    border-radius: 3px;
+}
+.container-setting img{
+    transition: .3s;
+}
+.container-setting.light{
+    background: #F4F4F4;
+}
+
+.container-setting .content-settings h3{
+    font-size: 16px;
+    margin: 0;
+}
+.container-setting.light .content-settings h3{
+    color: var(--bg-dark);
+}
+
+.container-setting .content-settings{
+    margin-left: 25px;
+}
+.container-setting .content-settings.select-image{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+.container-setting .content-settings.select-image h3{
+    width: 100%;
+}
+.container-setting .content-settings.select-image div{
+    display: flex;
+}
+.container-setting .content-settings.select-image div span{
+    margin-right: 30px;
+}
+.container-setting .content-settings span{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.container-setting .content-settings span input{
+    accent-color: #444444;
+    height: 15px;
+    width: 15px;
+}
+.container-setting .content-settings span input.light{
+    accent-color: #d3d3d3;
+}
+.container-setting .content-settings span p{
+    margin: 1px 0 0 10px;
+}
+.container-setting.light .content-settings span p{
+    color: var(--bg-dark);
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.secur-inp{
+    color: var(--color-white);
+    outline: none;
+    font-size: 11px;
+    font-weight: 600;
+    border:none;
+    background: none;
+    text-align: center;
+    border-bottom: 1px solid var(--color-green-04c);
+}
+.secur-inp.light{
+    color: var(--bg-dark);
+}

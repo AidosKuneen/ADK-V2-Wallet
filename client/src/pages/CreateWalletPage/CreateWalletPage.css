@@ -1,0 +1,53 @@
+/*dots*/
+.dots-create{
+    position: absolute;
+    top: 15%;
+    display: flex;
+}
+.dots-create .dot{
+    width: 5px;
+    height: 5px;
+    background: var(--dot-noactive-color);
+    border-radius: 5px;
+    margin: 0 12px;
+}
+.dots-create .dot.active{
+    background: #04CA73;
+}
+
+/*form*/
+.form-create-wallet-container h2.light{
+    color: var(--bg-dark);
+}
+.form-create-wallet-container form{
+    width: 190px;
+    margin: auto;
+}
+.form-create-wallet-container form input{
+    margin-top: 20px;
+}
+.form-create-wallet-container form .pass-first{
+    position: relative;
+    display: flex;
+}
+.form-create-wallet-container form .pass-first div{
+    border-bottom: 1px solid var(--color-white-opac-3);
+}
+.form-create-wallet-container form .pass-first div.light{
+    border-bottom: 1px solid var(--bg-black-opac-25);
+}
+.form-create-wallet-container form .pass-first img{
+    width: 18px;
+    cursor: pointer;
+    opacity: .5;
+    /*margin-bottom: -30px;*/
+    margin-top: 27px;
+}
+.form-create-wallet-container form button{
+    width: 100%;
+    margin-top: 25px;
+    padding: 8px 0;
+}
+.form-create-wallet-container form button.gray-button{
+    margin-top: 10px;
+}

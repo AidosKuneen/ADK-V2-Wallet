@@ -1,0 +1,36 @@
+.settings-modal.confirm.light .modal-content{
+    background: var(--color-white);
+}
+.settings-modal.confirm p span{
+    color: var(--color-green);
+    font-weight: 400;
+}
+.settings-modal.confirm p{
+    font-weight: 300;
+}
+.settings-modal.confirm.light p{
+    font-weight: 400;
+    color: var(--bg-black);
+}
+
+.btn-close{
+    transition: .3s;
+    background: transparent url(https://integerbytes.com/WhiteX.png) center/1em auto no-repeat;
+}
+
+.settings-modal.confirm .modal-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.send-success{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.send-success p{
+    width: 100%;
+    text-align: center;
+}

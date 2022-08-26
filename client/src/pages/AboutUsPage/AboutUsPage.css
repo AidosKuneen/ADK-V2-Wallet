@@ -1,0 +1,127 @@
+.about-us-page{
+    position: absolute;
+    width: calc(100% - 160px);
+    height: 100vh;
+    left: 160px;
+    overflow-y: scroll;
+}
+.about-us-page.light{
+    background: var(--bg-light);
+}
+.about-us-page::-webkit-scrollbar-track{
+    background: rgba(255, 255, 255, 0);
+}
+.about-us-page::-webkit-scrollbar {
+    width: 3px;               /* ширина всей полосы прокрутки */
+}
+.about-us-page::-webkit-scrollbar-thumb {
+    background-color: var(--color-white-opac-1);    /* цвет бегунка */
+    border-radius: 20px;       /* округлось бегунка */
+    border: 3px solid var(--color-white-opac-1);  /* отступ вокруг бегунка */
+}
+
+.waves-about{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+}
+.waves-about.light{
+    width: 120%;
+    position: absolute;
+    top: 20%;
+    left: -20%;
+}
+
+.links-top-about{
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.links-top-about a{
+    transition: .3s;
+    text-decoration: none;
+    opacity: .5;
+    color: var(--color-white);
+}
+.links-top-about.light a{
+    color: var(--bg-dark);
+}
+.links-top-about a:first-child{
+    margin-right: 15px;
+}
+.links-top-about a.active,
+.links-top-about a:hover{
+    color: var(--color-white);
+    opacity: 1;
+    cursor: default;
+}
+.links-top-about.light a.active,
+.links-top-about.light a:hover{
+    color: var(--bg-black);
+    opacity: 1;
+}
+
+.about-us-page .container-info{
+    /*background: red;*/
+    position: absolute;
+    top: 40px;
+}
+
+.about-us-page .container-info .info{
+    width: 90%;
+    margin: auto;
+    padding: 50px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.about-us-page .container-info .info img{
+    position: absolute;
+    left: 0;
+}
+.about-us-page .container-info .info .title{
+    margin-top: 33px;
+    margin-left: 10%;
+}
+.about-us-page.light .container-info .info .title{
+    color: var(--bg-dark);
+}
+.about-us-page .container-info .info .text{
+    max-width: 75%;
+    font-weight: 300;
+    font-size: 12px;
+    color: var(--color-white-opac-5);
+    margin: 0;
+}
+.about-us-page.light .container-info .info .text{
+    color: var(--bg-dark);
+}
+
+.about-us-page .container-info .info.right img{
+    position: absolute;
+    left: auto;
+    right: 7%;
+}
+
+.container-info hr{
+    height: 1px;
+    background: var(--color-white-opac-5);
+    width: 90%;
+    margin: 0 auto;
+}
+
+.about-us-page footer{
+    width: 90%;
+    margin: auto;
+    padding: 50px 0 30px;
+}
+.about-us-page footer a{
+    padding: 0 15px 0 0;
+    transition: .3s;
+    opacity: .5;
+}
+.about-us-page footer a:hover{
+    opacity: 1;
+}

@@ -1,0 +1,9 @@
+.wallet-success .blue-button{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto 0;
+    padding: 10px 15px;
+}
+.wallet-success .blue-button:hover{
+    padding: 10px 10px 10px 15px;
+}

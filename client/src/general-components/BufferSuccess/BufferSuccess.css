@@ -1,0 +1,9 @@
+.alert.alert-buffer{
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    z-index: 1000;
+    font-size: 14px;
+    padding: 10px;
+    transition: .3s;
+}

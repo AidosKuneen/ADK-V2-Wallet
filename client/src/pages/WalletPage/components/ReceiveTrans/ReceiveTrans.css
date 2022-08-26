@@ -1,0 +1,56 @@
+.rec-trans-container{
+    width: 100%;
+    padding:11px 10px;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .3s;
+    cursor: pointer;
+}
+.rec-trans-container.light{
+    color: var(--bg-dark);
+}
+.rec-trans-container:hover{
+    background: rgba(52, 53, 54, 0.76);
+}
+.rec-trans-container.light:hover{
+    background: var(--color-white);
+}
+
+.rec-trans-container span{
+    width: 36%;
+    display: flex;
+    justify-content: space-between;
+}
+.rec-trans-container p{
+    color: var(--color-white);
+    font-size: 12px;
+    opacity: .6;
+    margin: 0;
+}
+.rec-trans-container.light p{
+    color: var(--bg-dark);
+}
+.rec-trans-container .copy-address{
+    opacity: .6;
+    transition: .3s;
+}
+.rec-trans-container .copy-address:hover{
+    opacity: 1;
+}
+.rec-trans-container .money-container{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rec-trans-container .adk{
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0;
+}
+.rec-trans-container.light .adk{
+    color: var(--bg-dark);
+}

@@ -1,5 +1,6 @@
 "use strict";
 const { app, BrowserWindow, ipcMain } = require('electron')
+const todesktop = require("@todesktop/runtime");
 const path = require('path')
 const util = require('util')
 const exec = util.promisify(require("child_process").exec)
@@ -18,11 +19,8 @@ const prefix = {
   darwin: "/CLI/adk command",
   win32: "/CLI/adkWin.exe command"
 }
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-// eslint-disable-next-line global-require
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
+
+todesktop.init();
 
 const createWindow = () => {
   // Create the browser window.
@@ -34,7 +32,7 @@ const createWindow = () => {
     maxWidth: 1200,
     maxHeight: 680,
     resizable:false,
-    //icon:'/icon.ico',
+    icon:'adk.ico',
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },

@@ -1,0 +1,7 @@
+{
+  "id": "220826744u6g91p",
+  "icon": "client/build/images/adk-logo.png",
+  "appPath": ".",
+  "uploadSizeLimit":80,
+  "schemaVersion": 1
+}

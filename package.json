@@ -5,10 +5,11 @@
   "description": "Aidos Kuneen V2 Wallet",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron .",
-    "build": "yarn && todesktop build",
-    "quick-build": "yarn && todesktop build . --code-sign=false",
-    "release": "yarn && todesktop build && todesktop release --latest --force"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
   "author": "Aidos Kuneen <info@aidoskuneen.com>",
   "homepage": "http://aidoskuneen.com",
@@ -17,9 +18,53 @@
     "type": "git",
     "url": "https://github.com/AidosKuneen/ADK-V2-Wallet"
   },
+  "build": {
+    "extraResources": [
+      {
+        "from": "src/CLI",
+        "to": "resources/src/CLI",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "adk.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "ADK-V2-Wallet"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
   "dependencies": {
-    "@todesktop/runtime": "^0.6.5",
     "cryptocompare": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "express": "^4.18.1",
     "node-fetch": "^2.6.7",
     "nodemailer": "^6.7.8",
@@ -29,6 +74,12 @@
     "web3": "^1.7.5"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
     "electron": "19.0.8"
   }
 }

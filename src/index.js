@@ -1,6 +1,5 @@
 "use strict";
 const { app, BrowserWindow, ipcMain } = require('electron')
-const todesktop = require("@todesktop/runtime");
 const path = require('path')
 const util = require('util')
 const exec = util.promisify(require("child_process").exec)
@@ -9,6 +8,7 @@ const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch")
 const Web3 = require("web3")
+
 
 process.env.NODE_ENV = "production"
 app.disableHardwareAcceleration()
@@ -20,7 +20,11 @@ const prefix = {
   win32: "/CLI/adkWin.exe command"
 }
 
-todesktop.init();
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+// eslint-disable-next-line global-require
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
 
 const createWindow = () => {
   // Create the browser window.

@@ -1,6 +1,6 @@
 {
-  "name": "aidoskuneenwalletgui",
-  "productName": "aidoskuneenwalletgui",
+  "name": "ADK-V2-Wallet",
+  "productName": "ADK-V2-Wallet",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.js",
@@ -21,7 +21,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "aidoskuneenwalletgui"
+            "name": "ADK-V2-Wallet"
           }
         },
         {

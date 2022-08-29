@@ -77,10 +77,6 @@
     flex-wrap: wrap;
     align-content: flex-start;
 }
-.transactions.wallet-tr{
-    background: rgba(255, 255, 255, 0.11);
-    height: 85vh;
-}
 .transactions .trans-container{
     width: 100%;
     max-height: 65px;

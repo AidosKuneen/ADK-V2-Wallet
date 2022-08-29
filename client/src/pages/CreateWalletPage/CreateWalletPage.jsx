@@ -65,13 +65,10 @@ const CreateWalletPage = () => {
     }
 
     const [passShow,setPassShow] = useState(false)
-    const [passCopyShow,setPassCopyShow] = useState(false)
     const handleShowPass = () =>{
         setPassShow(!passShow)
     }
-    const handleShowCopyPass = () =>{
-        setPassCopyShow(!passCopyShow)
-    }
+
     const navigatePage = (url) =>{
         navigate(url)
     }
@@ -104,26 +101,18 @@ const CreateWalletPage = () => {
                                 />
                             </div>
                         </div>
-                        <div className="pass-first">
-                           <input
+
+                        <input
                             className={`input-gray ${checkLightTheme()} ${invalidInp}`}
-                            type={passCopyShow?'text':'password'}
-                            placeholder={`Enter password again`}
+                            type="password"
+                            placeholder={`Repeat your Password`}
                             value={passCopy}
                             onChange={event => setPassCopy(event.target.value)}
-                            />
-                            <div className={`${checkLightTheme()} ${invalidInp}`}>
-                                <img
-                                    onClick={handleShowCopyPass}
-                                    src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}
-                                    alt="eye"
-                                />
-                            </div>
-                        </div>
+                        />
+
                         <button className={`blue-button`} onClick={(event) => handleRoute('/showSeed',event)}>Next</button>
                         <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigatePage('/')}>Cancel</button>
-                    
-                   </form>
+                    </form>
                 </div>
 
                 {error===''?'':<Errors error={error} />}

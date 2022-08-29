@@ -1,8 +1,8 @@
 {
-  "name": "Adk-Wallet",
-  "productName": "ADK V2 Wallet",
+  "name": "aidoskuneenwalletgui",
+  "productName": "aidoskuneenwalletgui",
   "version": "1.0.0",
-  "description": "Aidos Kuneen V2 Wallet",
+  "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -11,34 +11,17 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-  "author": "Aidos Kuneen <info@aidoskuneen.com>",
-  "homepage": "http://aidoskuneen.com",
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AidosKuneen/ADK-V2-Wallet"
-  },
-  "build": {
-    "extraResources": [
-      {
-        "from": "src/CLI",
-        "to": "resources/src/CLI",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ]
-  },
+  "keywords": [],
+  "author": "integer",
+  "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {
-        "icon": "adk.ico"
-      },
+      "packagerConfig": {},
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "ADK-V2-Wallet"
+            "name": "aidoskuneenwalletgui"
           }
         },
         {
@@ -49,10 +32,6 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-dmg",
           "config": {}
         },
         {
@@ -70,13 +49,11 @@
     "nodemailer": "^6.7.8",
     "qrcode": "^1.5.1",
     "recharts": "^2.1.13",
-    "sib-api-v3-sdk": "^8.4.2",
-    "web3": "^1.7.5"
+    "sib-api-v3-sdk": "^8.4.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.64",
     "@electron-forge/maker-deb": "^6.0.0-beta.64",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.64",
     "@electron-forge/maker-rpm": "^6.0.0-beta.64",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
     "@electron-forge/maker-zip": "^6.0.0-beta.64",

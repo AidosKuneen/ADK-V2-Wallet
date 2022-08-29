@@ -6,8 +6,14 @@ const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
-const fetch = require("node-fetch")
-const Web3 = require("web3")
+const fetch = require("node-fetch");
+const nodemailer = require("nodemailer")
+//const Web3 = require("web3")
+
+
+/*const SibApiV3Sdk = require('sib-api-v3-sdk');
+SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';*/
+
 
 
 process.env.NODE_ENV = "production"
@@ -19,7 +25,6 @@ const prefix = {
   darwin: "/CLI/adk command",
   win32: "/CLI/adkWin.exe command"
 }
-
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 if (require('electron-squirrel-startup')) {
@@ -36,12 +41,12 @@ const createWindow = () => {
     maxWidth: 1200,
     maxHeight: 680,
     resizable:false,
-    icon:'adk.ico',
+    //icon:'/icon.ico',
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
-  //mainWindow.setIcon('./icon2.icns')
+  mainWindow.setIcon(path.join(__dirname,'./icon2.ico'))
   mainWindow.removeMenu()
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
@@ -78,7 +83,7 @@ app.on('ready', () => {
   ipcMain.handle("totalStake", totalStake);
   //ipcMain.handle( "sendEmail", sendEmail );
   ipcMain.handle("existWalletJSON ", existWalletJSON);
-  ipcMain.handle("getLastTx", getLastTx)
+ // ipcMain.handle("getLastTx", getLastTx)
   createWindow()
 });
 
@@ -540,14 +545,15 @@ const multistake = async (evt, way, mempas, amount) => {
   }
 }
 
-const getLastTx = async (evt, mempas, day=1) => {
+
+/*const getLastTx = async (evt, mempas, week=1) => {
   try {
     const resp = await listWalletAddress(evt, mempas, 10),
           adrs = JSON.parse(resp).data
 
     const web3 = new Web3("http://api1.mainnet.aidoskuneen.com:9545")
 
-    const prev = 500
+    const prev = 52500
 
     const currentBlock = await web3.eth.getBlockNumber()
 
@@ -558,7 +564,7 @@ const getLastTx = async (evt, mempas, day=1) => {
 
     let tasks = []
     let counter = 0
-    for (let i = currentBlock-prev*day; i <= currentBlock-(prev*(day-1)); i++) {
+    for (let i = currentBlock-prev*week; i <= currentBlock-(prev*(week-1)); i++) {
       tasks.push(
           new Promise( async (resolve, reject) => {
             const block = await web3.eth.getBlock(i, true)
@@ -566,7 +572,7 @@ const getLastTx = async (evt, mempas, day=1) => {
             resolve()
           } )
       )
-      if (counter === 5) {
+      if (counter === 1000) {
         await Promise.all(tasks)
         await sleep()
         counter = 0
@@ -586,8 +592,7 @@ const getLastTx = async (evt, mempas, day=1) => {
       data: err.message
     } )
   }
-}
-
+}*/
 
 
 // Далее идут взаимодействия с внешними API
@@ -620,3 +625,4 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( resp => resp.json() )
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
+

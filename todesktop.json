@@ -3,5 +3,8 @@
   "icon": "./src/icon.png",
   "appPath": ".",
   "schemaVersion": 1,
-  "uploadSizeLimit": 800
+  "uploadSizeLimit": 800,
+  "build": {
+    "asar": false
+  }
 }

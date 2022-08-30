@@ -9,14 +9,14 @@
 <h5 align="center">This repository contains the desktop wallet for Aidos Kuneen</h6>
 
 <p align="center">
-  <a href="https://raw.githubusercontent.com/AidosKuneen/aidos-wallet/master/LICENSE">
+  <a href="https://raw.githubusercontent.com/AidosKuneen/ADK-V2-Wallet/master/LICENSE">
       <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" alt="License">
   </a>
 </p>
 
 ## Prebuilt binaries
 
-If you want to just use the wallet app, please download [the latest release](https://github.com/AidosKuneen/aidos-wallet/releases) for your OS.
+If you want to just use the wallet app, please download [the latest release](https://github.com/AidosKuneen/ADK-V2-Wallet/releases/tag/adk) for your OS.
 
 ## Requirements
 
@@ -32,7 +32,7 @@ NodeJS is required to install and run the app.
 2. Setup file
 3. Run Desctop Icon "ADK V2 Wallet
 
-## [Changelog](https://github.com/AidosKuneen/aidos-wallet/blob/master/changelog.md)
+## [Changelog](https://github.com/AidosKuneen/ADK-V2-Wallet/blob/master/changelog.md)
 
 ## LICENSE
 

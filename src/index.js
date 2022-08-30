@@ -12,8 +12,8 @@ const fetch = require("node-fetch");
 // const overviewGraph = require("../client/src/pages/WalletPage/components/Overview/components/OverviewGraph/OverviewGraph");
 //const Web3 = require("web3")
 
-const todesktop = require("@todesktop/runtime");
-todesktop.init();
+// const todesktop = require("@todesktop/runtime");
+// todesktop.init();
 
 /*const SibApiV3Sdk = require('sib-api-v3-sdk');
 SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';*/
@@ -45,7 +45,7 @@ const createWindow = () => {
     maxWidth: 1200,
     maxHeight: 680,
     resizable:false,
-    //icon:'/icon.ico',
+    icon:'./icon.png',
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname,'./preload.js'),
@@ -57,7 +57,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

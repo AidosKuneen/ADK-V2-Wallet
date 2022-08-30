@@ -42,6 +42,7 @@ const CreateWalletPage = () => {
             setPassCopy('')
         }else {
             let dataUser = JSON.parse(await window.walletAPI.createWalletNew(pass));
+            console.log(dataUser)
             window.localStorage.setItem('password', pass);
             window.localStorage.setItem('adress', dataUser.data[0]);
             window.localStorage.setItem('seed', dataUser.data[1]);

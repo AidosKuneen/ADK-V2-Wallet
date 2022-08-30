@@ -7,9 +7,13 @@ const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
-const nodemailer = require("nodemailer")
+// const nodemailer = require("nodemailer")
+// const asar = require('asar');
+// const overviewGraph = require("../client/src/pages/WalletPage/components/Overview/components/OverviewGraph/OverviewGraph");
 //const Web3 = require("web3")
 
+// const todesktop = require("@todesktop/runtime");
+// todesktop.init();
 
 /*const SibApiV3Sdk = require('sib-api-v3-sdk');
 SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';*/
@@ -22,8 +26,8 @@ app.disableHardwareAcceleration()
 const plm = process.platform;
 const prefix = {
   linux: "./CLI/adk command",
-  darwin: "/CLI/adk command",
-  win32: "/CLI/adkWin.exe command"
+  darwin: "./CLI/adk command",
+  win32: "./CLI/adkWin.exe command",
 }
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
@@ -43,16 +47,17 @@ const createWindow = () => {
     resizable:false,
     //icon:'/icon.ico',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      preload: path.join(__dirname,'./preload.js'),
     },
   });
-  mainWindow.setIcon(path.join(__dirname,'./icon2.ico'))
+  // mainWindow.setIcon(path.join(__dirname,'./icon2.png'))
   mainWindow.removeMenu()
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -136,7 +141,8 @@ const createWalletNew = async (evt, password) => {
     return JSON.stringify({
       ok: false,
       msg: "error",
-      data: null
+      data: null,
+      path: path.join(__dirname, `${prefix[plm]}`)
     })
   }
 }

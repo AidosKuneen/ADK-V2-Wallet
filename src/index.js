@@ -6,7 +6,7 @@ const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
-const fetch = require("node-fetch");
+global.fetch = require("node-fetch");
 // const nodemailer = require("nodemailer")
 // const asar = require('asar');
 // const overviewGraph = require("../client/src/pages/WalletPage/components/Overview/components/OverviewGraph/OverviewGraph");
@@ -15,8 +15,8 @@ const fetch = require("node-fetch");
 // const todesktop = require("@todesktop/runtime");
 // todesktop.init();
 
-/*const SibApiV3Sdk = require('sib-api-v3-sdk');
-SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';*/
+// const SibApiV3Sdk = require('sib-api-v3-sdk');
+// SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';
 
 
 

@@ -40,6 +40,7 @@ const NavbarLeft = () => {
         const getStBal = async () =>{
             const adress = window.localStorage.getItem('adress')
             let data = await getStackedBalance()
+            console.log(data,'getStackedBalance')
             let dataNums = String(data.data[adress])
             let arrNums = dataNums.split(';')
             setStakedAllow([arrNums[1],arrNums[2]])

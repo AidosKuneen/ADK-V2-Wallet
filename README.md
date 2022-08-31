@@ -32,6 +32,28 @@ NodeJS is required to install and run the app.
 2. Setup file
 3. Run Desctop Icon "ADK V2 Wallet
 
+## Build & Run
+
+These instructions are only in case you want to build the wallet by yourself. Pre-built packages are available on [Release Page](https://github.com/AidosKuneen/aidos-wallet/releases).
+
+1. Clone this repository:
+
+```
+git clone https://github.com/AidosKuneen/ADK-V2-Wallet.git
+```
+
+2. Open terminal and write:
+
+```
+npm i
+```
+
+3. Then write:
+
+```
+npm start
+```
+
 ## [Changelog](https://github.com/AidosKuneen/ADK-V2-Wallet/blob/master/changelog.md)
 
 ## LICENSE

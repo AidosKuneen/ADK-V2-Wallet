@@ -98,11 +98,13 @@ const Send = (props) => {
         e.preventDefault()
         if (+stakeValue > +window.localStorage.getItem('totalBalance')){
             setErrorFun('Stak error. You do not have enough money to stak.')
+        }else if(checkValue === 0){
+            setErrorFun('Stak error. You need to choose a sending method.')
         }else {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
-            const stake = JSON.parse(await window.walletAPI.multistake('gas',`"${seed}"`,stakeValue))
+            const stake = JSON.parse(await window.walletAPI.multistake(checkValue===1?'gas':'pow',`"${seed}"`,stakeValue))
             // console.log(stake,'STAKE TRANS')
             let dataTransStake = await sendTrans('stake')
             if (stake.ok===false){
@@ -127,18 +129,14 @@ const Send = (props) => {
         e.preventDefault()
         if (+stakeValue > +getBalanceStake){
             setErrorFun('Unstak error. You do not have enough money to unstak.')
+        }else if(checkValue === 0){
+            setErrorFun('Unstak error. You need to choose a sending method.')
         }else {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
-            const unstake = JSON.parse(await window.walletAPI.unstake('gas',`"${seed}"`,adress,stakeValue))
-            // console.log(unstake)
+            const unstake = JSON.parse(await window.walletAPI.unstake(checkValue===1?'gas':'pow',`"${seed}"`,adress,stakeValue))
             setStakeValue('')
-            // console.log(unstake.ok)
-            // console.log(seed)
-            // console.log(adress)
-            // console.log(stakeValue)
-            // console.log(unstake)
             if (unstake.ok===false){
                 setErrorFun("Unstake is not completed. Please try it later.")
                 setTimeout(() => navigateOut('/wallet/staking'),3000)
@@ -241,12 +239,42 @@ const Send = (props) => {
                                     placeholder={`0.00`}
                                     value={stakeValue}
                                     onChange={event => setStakeValue(event.target.value)}
+                                    style={{
+                                        paddingLeft:String(stakeValue).length>21?28:
+                                            String(stakeValue).length>18?25:
+                                                String(stakeValue).length>15?22:
+                                                    String(stakeValue).length>12?18:
+                                                        String(stakeValue).length>9?14:
+                                                            String(stakeValue).length>6?10:
+                                                                String(stakeValue).length>3?5:0
+                                    }}
                                 />
                                 <div className={`but-container blue`}>
                                     <button onClick={setAllADKStake} className={`all-send ${checkLightTheme()}`}>All</button>
                                     <h3>ADK</h3>
                                 </div>
+                                <h2 className={'inp-value-h2 blue'}>
+                                    {stakeValue===null || stakeValue===''?'':
+                                        isNaN(stakeValue)?'Incorreact Amount':
+                                            Number(stakeValue).toLocaleString('en-EN')}
+                                </h2>
                             </div>
+
+                            {checkValue===1?
+                                <p className={'blue'}>Fees: 0.021 ADK</p>:
+                                checkValue===2?
+                                    <p className={'blue'}>Fees: 0 ADK</p>:''
+                            }
+
+                            <p className={`radio-p ${checkLightTheme()}`}>
+                                <input type="radio" checked={checkValue === 1} onChange={() => setCheckValue(1)} />
+                                <label htmlFor="answer1">Pay GAS "Fastest"</label>
+                            </p>
+
+                            <p className={`radio-p ${checkLightTheme()}`}>
+                                <input type="radio" checked={checkValue === 2} onChange={() => setCheckValue(2)} />
+                                <label htmlFor="answer2">Do POW</label>
+                            </p>
 
                             <div className="butt-container">
                                 {
@@ -268,12 +296,42 @@ const Send = (props) => {
                                         placeholder={`0.00`}
                                         value={stakeValue}
                                         onChange={event => setStakeValue(event.target.value)}
+                                        style={{
+                                            paddingLeft:String(stakeValue).length>21?28:
+                                                String(stakeValue).length>18?25:
+                                                    String(stakeValue).length>15?22:
+                                                        String(stakeValue).length>12?18:
+                                                            String(stakeValue).length>9?14:
+                                                                String(stakeValue).length>6?10:
+                                                                    String(stakeValue).length>3?5:0
+                                        }}
                                     />
                                     <div className="but-container blue">
                                         <button onClick={setAllADKUnstake} className={`all-send ${checkLightTheme()}`}>All</button>
                                         <h3>ADK</h3>
                                     </div>
+                                    <h2 className={'inp-value-h2 blue'}>
+                                        {stakeValue===null || stakeValue===''?'':
+                                            isNaN(stakeValue)?'Incorreact Amount':
+                                                Number(stakeValue).toLocaleString('en-EN')}
+                                    </h2>
                                 </div>
+
+                                {checkValue===1?
+                                    <p className={'blue'}>Fees: 0.021 ADK</p>:
+                                    checkValue===2?
+                                        <p className={'blue'}>Fees: 0 ADK</p>:''
+                                }
+
+                                <p className={`radio-p ${checkLightTheme()}`}>
+                                    <input type="radio" checked={checkValue === 1} onChange={() => setCheckValue(1)} />
+                                    <label htmlFor="answer1">Pay GAS "Fastest"</label>
+                                </p>
+
+                                <p className={`radio-p ${checkLightTheme()}`}>
+                                    <input type="radio" checked={checkValue === 2} onChange={() => setCheckValue(2)} />
+                                    <label htmlFor="answer2">Do POW</label>
+                                </p>
 
                                 <div className="butt-container">
                                     {

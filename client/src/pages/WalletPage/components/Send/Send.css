@@ -26,6 +26,9 @@
     font-weight: 300;
     color: var(--color-green);
 }
+.send-content form .adk-value h2.inp-value-h2.blue{
+    color: var(--color-blue);
+}
 .send-content form input.send{
     margin-bottom: 20px;
 }
@@ -105,7 +108,8 @@
     width: 45%;
 }
 .send-content form .adk-value input.blue{
-    color: var(--color-blue);
+    color: rgba(0, 0, 0, 0);
+    caret-color: var(--color-blue);
     border-bottom: 1px solid var(--color-blue);
 }
 
@@ -128,6 +132,9 @@
     margin: 15px 0;
     font-weight: 400;
     color: var(--color-green-04c);
+}
+.send-content form p.blue{
+    color: var(--color-blue);
 }
 
 

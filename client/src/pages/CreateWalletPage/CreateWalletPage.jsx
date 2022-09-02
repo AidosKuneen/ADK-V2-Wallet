@@ -69,6 +69,10 @@ const CreateWalletPage = () => {
     const handleShowPass = () =>{
         setPassShow(!passShow)
     }
+    const [passShowCopy,setPassShowCopy] = useState(false)
+    const handleShowPassCopy = () =>{
+        setPassShowCopy(!passShowCopy)
+    }
 
     const navigatePage = (url) =>{
         navigate(url)
@@ -103,13 +107,22 @@ const CreateWalletPage = () => {
                             </div>
                         </div>
 
-                        <input
-                            className={`input-gray ${checkLightTheme()} ${invalidInp}`}
-                            type="password"
-                            placeholder={`Repeat your Password`}
-                            value={passCopy}
-                            onChange={event => setPassCopy(event.target.value)}
-                        />
+                        <div className="pass-first">
+                            <input
+                                className={`input-gray ${checkLightTheme()} ${invalidInp}`}
+                                type={passShowCopy?'text':'password'}
+                                placeholder={`Repeat your Password`}
+                                value={passCopy}
+                                onChange={event => setPassCopy(event.target.value)}
+                            />
+                            <div className={`${checkLightTheme()} ${invalidInp}`}>
+                                <img
+                                    onClick={handleShowPassCopy}
+                                    src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}
+                                    alt="eye"
+                                />
+                            </div>
+                        </div>
 
                         <button className={`blue-button`} onClick={(event) => handleRoute('/showSeed',event)}>Next</button>
                         <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigatePage('/')}>Cancel</button>

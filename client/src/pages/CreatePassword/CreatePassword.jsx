@@ -61,6 +61,10 @@ const CreatePassword = () => {
     const handleShowPass = () =>{
         setPassShow(!passShow)
     }
+    const [passShowCopy,setPassShowCopy] = useState(false)
+    const handleShowPassCopy = () =>{
+        setPassShowCopy(!passShowCopy)
+    }
 
     const navigateRoute = (url) =>{
         navigate(url)
@@ -98,13 +102,22 @@ const CreatePassword = () => {
                             </div>
                         </div>
 
-                        <input
-                            className={`input-gray ${checkLightTheme()} ${invalidInp}`}
-                            type="password"
-                            placeholder={`insert again`}
-                            value={passCopy}
-                            onChange={event => setPassCopy(event.target.value)}
-                        />
+                        <div className="pass-auth">
+                            <input
+                                className={`input-gray ${checkLightTheme()} ${invalidInp} ${passShowCopy?'act':''}`}
+                                type={passShowCopy?'text':'password'}
+                                placeholder={`insert again`}
+                                value={passCopy}
+                                onChange={event => setPassCopy(event.target.value)}
+                            />
+                            <div className={`${checkLightTheme()} ${invalidInp}`}>
+                                {
+                                    checkLightTheme()?
+                                        <img onClick={handleShowPassCopy} className={passShowCopy?'act':''} src="./images/eye-dark.svg" alt=""/>:
+                                        <img onClick={handleShowPassCopy} className={passShowCopy?'act':''} src="./images/eye.svg" alt=""/>
+                                }
+                            </div>
+                        </div>
 
                         <footer>
                             <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>

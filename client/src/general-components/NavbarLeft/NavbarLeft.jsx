@@ -43,7 +43,8 @@ const NavbarLeft = () => {
             console.log(data,'getStackedBalance')
             let dataNums = String(data.data[adress])
             let arrNums = dataNums.split(';')
-            setStakedAllow([arrNums[1],arrNums[2]])
+            const lockedValue = (Number(arrNums[3]) - (Number(arrNums[2]) - Number(arrNums[1]))) + Number(arrNums[1]);
+            setStakedAllow([lockedValue,arrNums[2]])
             setTimeout(getStBal,5000)
         }
         getStBal()

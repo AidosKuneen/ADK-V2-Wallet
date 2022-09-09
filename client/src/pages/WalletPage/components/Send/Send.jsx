@@ -207,26 +207,29 @@ const Send = (props) => {
         setDisplayCopy(false)
     }
 
-    const redactNumOne = (n) => {
-        setAdkValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
-        redactNumTwo(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+    //for send
+    const redactNumOne = (n,way) => {
+        if (way === 'send'){
+            setAdkValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        }else {
+            setStakeValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        }
+        redactNumTwo(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ),way)
         // console.log(n.replace(/\D/g,''))
     }
-    const redactNumTwo = n =>{
+    const redactNumTwo = (n,way) =>{
         let parts = n.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        setAdkValue(parts.join("."))
-    }
-
-    const redactNumOneStake = (n) => {
-        setStakeValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
-        redactNumTwoStake(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
-        // console.log(n.replace(/\D/g,''))
-    }
-    const redactNumTwoStake = n =>{
-        let parts = n.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        setStakeValue(parts.join("."))
+        if (String(n).includes('.')){
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            parts[1] = parts[1].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }else {
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (way === 'send'){
+            setAdkValue(parts.join("."))
+        }else {
+            setStakeValue(parts.join("."))
+        }
     }
 
 
@@ -270,7 +273,7 @@ const Send = (props) => {
                                     type="text"
                                     placeholder={`0.00`}
                                     value={stakeValue}
-                                    onChange={event => redactNumOneStake(event.target.value)}
+                                    onChange={event => redactNumOne(event.target.value,'stake')}
                                 />
                                 <div className={`but-container blue`}>
                                     <button onClick={setAllADKStake} className={`all-send ${checkLightTheme()}`}>All</button>
@@ -313,7 +316,7 @@ const Send = (props) => {
                                         type="text"
                                         placeholder={`0.00`}
                                         value={stakeValue}
-                                        onChange={event => redactNumOneStake(event.target.value)}
+                                        onChange={event => redactNumOne(event.target.value,'stake')}
                                     />
                                     <div className="but-container blue">
                                         <button onClick={setAllADKUnstake} className={`all-send ${checkLightTheme()}`}>All</button>
@@ -366,7 +369,7 @@ const Send = (props) => {
                                     type="text"
                                     placeholder={''}
                                     value={adkValue}
-                                    onChange={event => redactNumOne(event.target.value)}
+                                    onChange={event => redactNumOne(event.target.value,'send')}
                                 />
                                 <div className={`but-container ${invalidInpAdk?'invalid':''}`}>
                                     <button onClick={setAllADK} className={'all-send'}>All</button>

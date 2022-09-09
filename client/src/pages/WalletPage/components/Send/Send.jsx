@@ -28,7 +28,8 @@ const Send = (props) => {
     const [to,setTo] = useState('')
     const [mempasState,setMempasState] = useState('')
     const [fromState,setFromState] = useState('')
-    const [adkValue,setAdkValue] = useState(null)
+    const [adkValue,setAdkValue] = useState('')
+    const [adkValueLast,setAdkValueLast] = useState('')
     const [checkValue,setCheckValue] = useState(0)
     const [migrateSeed,setMigrateSeed] = useState('')
 
@@ -36,7 +37,8 @@ const Send = (props) => {
     const [displayCopy,setDisplayCopy] = useState(false)
 
     //state for stake
-    const [stakeValue,setStakeValue] = useState(null)
+    const [stakeValue,setStakeValue] = useState('')
+    const [stakeValueLast,setStakeValueLast] = useState('')
     const [displayButState,setDispalyButState] = useState(true)
 
     //stake for invalid input
@@ -66,15 +68,18 @@ const Send = (props) => {
     //SEND
     const handleSend = async (e) =>{
         e.preventDefault()
+        let adkValueLastInner = adkValue.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' )
+        setAdkValueLast(adkValueLastInner)
+        e.preventDefault()
         if (to.length !== 42){
             setInvalidInp(true)
             setInvalidInpAdk(false)
             setErrorFun('Address incorrect. Please enter the correct address.')
-        }else if(+adkValue > +window.localStorage.getItem('totalBalance')){
+        }else if(Number(adkValueLastInner) > +window.localStorage.getItem('totalBalance')){
             setInvalidInp(false)
             setInvalidInpAdk(true)
             setErrorFun('Send error. You do not have enough money to send.')
-        } else if(adkValue===null || adkValue==='' || isNaN(adkValue)){
+        } else if(!Number(adkValueLastInner)){
             setInvalidInp(false)
             setInvalidInpAdk(true)
             setErrorFun('Send error. Enter the number of coins.')
@@ -96,15 +101,17 @@ const Send = (props) => {
     //STAKE
     const handleStake = async (e) =>{
         e.preventDefault()
-        if (+stakeValue > +window.localStorage.getItem('totalBalance')){
+        let stakeValueLast = stakeValue.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' )
+        setStakeValueLast(stakeValueLast)
+        if (Number(stakeValueLast) > +window.localStorage.getItem('totalBalance')){
             setErrorFun('Stak error. You do not have enough money to stak.')
-        }else if(checkValue === 0){
+        }else if(!Number(stakeValueLast)){
             setErrorFun('Stak error. You need to choose a sending method.')
         }else {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
-            const stake = JSON.parse(await window.walletAPI.multistake(checkValue===1?'gas':'pow',`"${seed}"`,stakeValue))
+            const stake = JSON.parse(await window.walletAPI.multistake(checkValue===1?'gas':'pow',`"${seed}"`,stakeValueLast))
             // console.log(stake,'STAKE TRANS')
             let dataTransStake = await sendTrans('stake')
             if (stake.ok===false){
@@ -127,15 +134,17 @@ const Send = (props) => {
     //UNSTAKE
     const handleUnstake = async (e) =>{
         e.preventDefault()
-        if (+stakeValue > +getBalanceStake){
+        let stakeValueLast = stakeValue.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' )
+        setStakeValueLast(stakeValueLast)
+        if (Number(stakeValueLast) > +getBalanceStake){
             setErrorFun('Unstak error. You do not have enough money to unstak.')
-        }else if(checkValue === 0){
+        }else if(!Number(stakeValueLast)){
             setErrorFun('Unstak error. You need to choose a sending method.')
         }else {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
-            const unstake = JSON.parse(await window.walletAPI.unstake(checkValue===1?'gas':'pow',`"${seed}"`,adress,stakeValue))
+            const unstake = JSON.parse(await window.walletAPI.unstake(checkValue===1?'gas':'pow',`"${seed}"`,adress,stakeValueLast))
             setStakeValue('')
             if (unstake.ok===false){
                 setErrorFun("Unstake is not completed. Please try it later.")
@@ -180,23 +189,46 @@ const Send = (props) => {
     const setAllADK = async (e) =>{
         e.preventDefault()
         const value = await getBalance()
-        setAdkValue(value)
+        setAdkValue(String(value))
     }
     const setAllADKStake = async (e) =>{
         e.preventDefault()
         const value = await getBalance()
-        setStakeValue(value)
+        setStakeValue(String(value))
     }
     const setAllADKUnstake = async (e) =>{
         e.preventDefault()
         const value = await getBalanceStake()
-        setStakeValue(value)
+        setStakeValue(String(value))
     }
 
     //for change copy alert
     const changeCopyDisp = () =>{
         setDisplayCopy(false)
     }
+
+    const redactNumOne = (n) => {
+        setAdkValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        redactNumTwo(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        // console.log(n.replace(/\D/g,''))
+    }
+    const redactNumTwo = n =>{
+        let parts = n.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        setAdkValue(parts.join("."))
+    }
+
+    const redactNumOneStake = (n) => {
+        setStakeValue(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        redactNumTwoStake(n.replace(/[^.\d]+/g,"").replace( /^([^\.]*\.)|\./g, '$1' ))
+        // console.log(n.replace(/\D/g,''))
+    }
+    const redactNumTwoStake = n =>{
+        let parts = n.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        setStakeValue(parts.join("."))
+    }
+
 
     return (
         <div className={`block-container menu ${fade} ${checkLightTheme()}`}>
@@ -212,7 +244,7 @@ const Send = (props) => {
                 mempas={mempasState}
                 from={fromState}
                 to={to}
-                adkValue={adkValue}
+                adkValue={adkValueLast}
             />
             <ModalClose
                 show={modalClose}
@@ -238,26 +270,12 @@ const Send = (props) => {
                                     type="text"
                                     placeholder={`0.00`}
                                     value={stakeValue}
-                                    onChange={event => setStakeValue(event.target.value)}
-                                    style={{
-                                        paddingLeft:String(stakeValue).length>21?28:
-                                            String(stakeValue).length>18?25:
-                                                String(stakeValue).length>15?22:
-                                                    String(stakeValue).length>12?18:
-                                                        String(stakeValue).length>9?14:
-                                                            String(stakeValue).length>6?10:
-                                                                String(stakeValue).length>3?5:0
-                                    }}
+                                    onChange={event => redactNumOneStake(event.target.value)}
                                 />
                                 <div className={`but-container blue`}>
                                     <button onClick={setAllADKStake} className={`all-send ${checkLightTheme()}`}>All</button>
                                     <h3>ADK</h3>
                                 </div>
-                                <h2 className={'inp-value-h2 blue'}>
-                                    {stakeValue===null || stakeValue===''?'':
-                                        isNaN(stakeValue)?'Incorreact Amount':
-                                            Number(stakeValue).toLocaleString('en-EN')}
-                                </h2>
                             </div>
 
                             {checkValue===1?
@@ -295,26 +313,12 @@ const Send = (props) => {
                                         type="text"
                                         placeholder={`0.00`}
                                         value={stakeValue}
-                                        onChange={event => setStakeValue(event.target.value)}
-                                        style={{
-                                            paddingLeft:String(stakeValue).length>21?28:
-                                                String(stakeValue).length>18?25:
-                                                    String(stakeValue).length>15?22:
-                                                        String(stakeValue).length>12?18:
-                                                            String(stakeValue).length>9?14:
-                                                                String(stakeValue).length>6?10:
-                                                                    String(stakeValue).length>3?5:0
-                                        }}
+                                        onChange={event => redactNumOneStake(event.target.value)}
                                     />
                                     <div className="but-container blue">
                                         <button onClick={setAllADKUnstake} className={`all-send ${checkLightTheme()}`}>All</button>
                                         <h3>ADK</h3>
                                     </div>
-                                    <h2 className={'inp-value-h2 blue'}>
-                                        {stakeValue===null || stakeValue===''?'':
-                                            isNaN(stakeValue)?'Incorreact Amount':
-                                                Number(stakeValue).toLocaleString('en-EN')}
-                                    </h2>
                                 </div>
 
                                 {checkValue===1?
@@ -362,26 +366,12 @@ const Send = (props) => {
                                     type="text"
                                     placeholder={''}
                                     value={adkValue}
-                                    onChange={event => setAdkValue(event.target.value)}
-                                    style={{
-                                        paddingLeft:String(adkValue).length>21?28:
-                                            String(adkValue).length>18?25:
-                                                String(adkValue).length>15?22:
-                                                    String(adkValue).length>12?18:
-                                                        String(adkValue).length>9?14:
-                                                            String(adkValue).length>6?10:
-                                                                String(adkValue).length>3?5:0
-                                    }}
+                                    onChange={event => redactNumOne(event.target.value)}
                                 />
                                 <div className={`but-container ${invalidInpAdk?'invalid':''}`}>
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
-                                <h2 className={'inp-value-h2'}>
-                                    {adkValue===null || adkValue===''?'':
-                                        isNaN(adkValue)?'Incorreact Amount':
-                                            Number(adkValue).toLocaleString('en-EN')}
-                                </h2>
                             </div>
 
                             {checkValue===1?
